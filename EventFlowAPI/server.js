@@ -9,21 +9,21 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ===== DADOS SIMULADOS =====
-let users = [
+let usuarios = [
   { id: 1, email: 'junior@example.com', password: '123456', name: 'Junior' }
 ];
 
-let categories = [
+let categorias = [
   { id: 1, name: 'Show' },
   { id: 2, name: 'Teatro' }
 ];
 
-let locations = [
+let locais = [
   { id: 1, name: 'Arena Expo', latitude: -9.974, longitude: -67.824, address: 'Rua A, 123' },
   { id: 2, name: 'Teatro Central', latitude: -9.973, longitude: -67.825, address: 'Rua B, 456' }
 ];
 
-let events = [
+let eventos = [
   {
     id: 1,
     name: 'Evento Inicial',
@@ -42,56 +42,56 @@ let events = [
 // Login
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  const user = users.find(u => u.email === email && u.password === password);
-  if (user) {
-    res.json({ success: true, user: { id: user.id, name: user.name, email: user.email } });
+  const usuario = usuarios.find(u => u.email === email && u.password === password);
+  if (usuario) {
+    res.json({ success: true, user: { id: usuario.id, name: usuario.name, email: usuario.email } });
   } else {
     res.status(401).json({ success: false, message: 'Credenciais inválidas' });
   }
 });
 
 // Listar eventos
-app.get('/events', (req, res) => {
-  const fullEvents = events.map(e => {
-    const category = categories.find(c => c.id === e.categoryId);
-    const location = locations.find(l => l.id === e.locationId);
-    return { ...e, category, location };
+app.get('/eventos', (req, res) => {
+  const fullEventos = eventos.map(e => {
+    const categoria = categorias.find(c => c.id === e.categoryId);
+    const local = locais.find(l => l.id === e.locationId);
+    return { ...e, categoria, local };
   });
-  res.json(fullEvents);
+  res.json(fullEventos);
 });
 
 // Cadastrar evento
-app.post('/events', (req, res) => {
-  const newEvent = { id: events.length + 1, ...req.body };
-  events.push(newEvent);
-  res.json({ success: true, event: newEvent });
+app.post('/eventos', (req, res) => {
+  const novoEvento = { id: eventos.length + 1, ...req.body };
+  eventos.push(novoEvento);
+  res.json({ success: true, evento: novoEvento });
 });
 
 // Listar categorias
-app.get('/categories', (req, res) => res.json(categories));
+app.get('/categorias', (req, res) => res.json(categorias));
 
 // Cadastrar categoria
-app.post('/categories', (req, res) => {
-  const newCategory = { id: categories.length + 1, ...req.body };
-  categories.push(newCategory);
-  res.json({ success: true, category: newCategory });
+app.post('/categorias', (req, res) => {
+  const novaCategoria = { id: categorias.length + 1, ...req.body };
+  categorias.push(novaCategoria);
+  res.json({ success: true, categoria: novaCategoria });
 });
 
 // Listar locais
-app.get('/locations', (req, res) => res.json(locations));
+app.get('/locais', (req, res) => res.json(locais));
 
 // Cadastrar local
-app.post('/locations', (req, res) => {
-  const newLocation = { id: locations.length + 1, ...req.body };
-  locations.push(newLocation);
-  res.json({ success: true, location: newLocation });
+app.post('/locais', (req, res) => {
+  const novoLocal = { id: locais.length + 1, ...req.body };
+  locais.push(novoLocal);
+  res.json({ success: true, local: novoLocal });
 });
 
 // Perfil do usuário
-app.get('/profile/:id', (req, res) => {
-  const user = users.find(u => u.id == req.params.id);
-  if (user) {
-    res.json({ id: user.id, name: user.name, email: user.email });
+app.get('/perfil/:id', (req, res) => {
+  const usuario = usuarios.find(u => u.id == req.params.id);
+  if (usuario) {
+    res.json({ id: usuario.id, name: usuario.name, email: usuario.email });
   } else {
     res.status(404).json({ message: 'Usuário não encontrado' });
   }
@@ -101,3 +101,4 @@ app.get('/profile/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
