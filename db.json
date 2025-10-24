@@ -1,0 +1,36 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "email": "admin@admin.com",
+      "senha": "123"
+    },
+    {
+      "id": 2,
+      "nome": "Junior",
+      "email": "junior@gmail.com",
+      "senha": "456"
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "nome": "Show do Oruam",
+      "descricao": "Apresentação especial do rapper Oruam em Fortaleza.",
+      "data": "2025-11-10",
+      "preco": 80,
+      "categoriaId": 1,
+      "localId": 1,
+      "imagem": "https://i.imgur.com/qhK5oIh.jpg"
+    }
+  ],
+  "categorias": [
+    { "id": 1, "nome": "Música" }
+  ],
+  "locais": [
+    { "id": 1, "nome": "Estádio", "latitude": -3.73186, "longitude": -38.52667 }
+  ]
+}
+
+

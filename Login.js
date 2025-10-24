@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Login({ navigation }) {
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
+
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleLogin = async () => {
-    if (email === "teste@email.com" && senha === "123456") {
-      await AsyncStorage.setItem("usuarioLogado", JSON.stringify({ email }));
-      navigation.replace("Home");
+  const handleLogin = () => {
+    if (email === "admin" && senha === "123") {
+      navigation.replace("Home"); // vai pra tela Home
     } else {
-      Alert.alert("Erro", "E-mail ou senha incorretos!");
+      Alert.alert("Erro", "Usuário ou senha incorretos!");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Login</Text>
+      <Text style={styles.title}>EventFlowO</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="E-mail"
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
+
       <TextInput
         style={styles.input}
         placeholder="Senha"
@@ -33,20 +33,47 @@ export default function Login({ navigation }) {
         onChangeText={setSenha}
       />
 
-      <Button title="Entrar" onPress={handleLogin} />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Entrar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#fff" },
-  titulo: { fontSize: 24, fontWeight: "bold", marginBottom: 20, textAlign: "center" },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+    padding: 20,
+  },
+  title: {
+    color: "#fff",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 30,
+  },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
+    width: "100%",
+    backgroundColor: "#1e1e1e",
+    color: "#fff",
     borderRadius: 8,
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: "#5A4FCF",
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
   },
 });
+
+
+
 
