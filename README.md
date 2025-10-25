@@ -127,9 +127,3 @@ Email: junior@gmail.com
 
 yaml
 Copiar código
-
----
-
-Se você quiser, posso fazer **uma versão ainda mais enxuta e prática**, só com o essencial para o professor testar rápido a API e o APK, pronta para colar direto no GitHub.  
-
-Quer que eu faça essa versão?
